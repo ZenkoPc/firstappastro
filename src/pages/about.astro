@@ -1,5 +1,17 @@
 ---
+const pageTitle = 'About me'
+const identity = {
+    firstName: 'Andres Felipe',
+    lastName: 'Obando',
+    country: 'Colombia',
+    occupation: 'Student/Developer',
+    hobbies: ['shows','videogames','music','basketball']
+}
+const skills = ['HTML','CSS','JS','TS','React','Astro']
 
+const happy = true
+const finished = false
+const goal = 3
 ---
 
 <html lang="en">
@@ -8,23 +20,44 @@
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
+		<title>{pageTitle}</title>
 	</head>
 	<body>
-		<h1>About Page</h1>
+		<h1>{pageTitle}</h1>
         <a href="/">Home</a>
-		<a href="/about">About</a>
-        <a href="/blog">Blog</a>
-        <a href="/posts/post-1"></a>
+		<a href="/about/">About</a>
+        <a href="/blog/">Blog</a>
         <h2>
-            ... the new Astro site
+            Some facts about me:
         </h2>
+        <ul>
+            <li>
+                My name is {identity.firstName +" "+ identity.lastName}
+            </li>
+            <li>
+                I live in {identity.country} and I work as a {identity.occupation}
+            </li>
+            {
+                identity.hobbies.length >= 2 ? 
+                <li>
+                    Some of my Hobbies are:
+                    {
+                        identity.hobbies.map((ob) => {
+                            return ob + ", "
+                        })
+                    }
+                </li>
+                : 
+                <li>
+                    The truht is I dont have    
+                </li>
+            }
+        </ul>
         <p>
-            working this through astro's introductory tutorial,
-            the second page on this tutorial that makes this an MPA 
+            My skills are: {skills.map((ob) => <li>{ob}</li>)}
         </p>
-        <p>
-            React works in SPA and astro can work on MPA this will be awesome
-        </p>
+        {happy && <p>I am happy to be learning astro</p> }
+        {finished && <p>I finished this tutorial</p> }
+        {goal === 3 ? <p>My goal is to finish this in 3 days</p> : <p>I have finished this</p> }
 	</body>
 </html>

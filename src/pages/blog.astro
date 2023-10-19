@@ -1,5 +1,5 @@
 ---
-
+const pageTitle = 'Blog'
 ---
 
 <html lang="en">
@@ -8,14 +8,24 @@
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
+		<title>{pageTitle}</title>
 	</head>
 	<body>
-		<h1>Blog</h1>
+		<h1>{pageTitle}</h1>
 		<a href="/">Home</a>
-		<a href="/about">About</a>
-		<a href="/blog">Blog</a>
-        <a href="/posts/post-1"></a>
+		<a href="/about/">About</a>
+		<a href="/blog/">Blog</a>
+        <ul>
+            <li>
+                <a href="/posts/post-1">Post</a>
+            </li>
+            <li>
+                <a href="/posts/post-2">Post 2</a>
+            </li>
+            <li>
+                <a href="/posts/post-3">Post 3</a>
+            </li>
+        </ul>
         <p>
             this is the blog section dude jajajaj
         </p>
