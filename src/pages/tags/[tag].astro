@@ -1,14 +1,15 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import BlogPost from "../../components/BlogPost.astro"
+import { getCollection } from 'astro:content'
 
 export async function getStaticPaths() {
 
-    const allPosts = await Astro.glob('../posts/*.md')
-    const uniqueTags = [...new Set(allPosts.map((ob) => ob.frontmatter.tags).flat())]
+    const allPosts = await getCollection('posts')
+    const uniqueTags = [...new Set(allPosts.map((ob) => ob.data.tags).flat())]
 
     return uniqueTags.map((tag) => {
-        const filteredPosts = allPosts.filter((ob) => ob.frontmatter.tags.includes(tag))
+        const filteredPosts = allPosts.filter((ob) => ob.data.tags.includes(tag))
         return {
             params: { tag },
             props: { posts: filteredPosts } 
@@ -26,7 +27,7 @@ const { posts } = Astro.props
     </p>
     <ul>
         {posts.map((post) => {
-            return <BlogPost title={post.frontmatter.title} url={post.url} />
+            return <BlogPost title={post.data.title} url={`/posts/${post.slug}`} />
         })}
     </ul>
 </BaseLayout>

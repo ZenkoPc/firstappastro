@@ -13,7 +13,7 @@ const { frontmatter } = Astro.props
         <div class="flex">
             <span>
                 Written by: {frontmatter.author} -
-                Published: {frontmatter.pubDate.split('T')[0]}
+                Published: {frontmatter.pubDate.toString().split('T')[0]}
             </span>
             <img class="blog-img" src={frontmatter.image.url} alt={frontmatter.image.alt}>
         </div>
