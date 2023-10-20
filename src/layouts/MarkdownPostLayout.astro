@@ -1,6 +1,8 @@
 ---
 import BaseLayout from './BaseLayout.astro'
 import '../styles/global.css'
+import { fade } from 'astro:transitions'
+import { slide } from 'astro:transitions'
 
 const { frontmatter } = Astro.props
 ---
@@ -12,7 +14,7 @@ const { frontmatter } = Astro.props
         </h2>
         <div class="flex">
             <span>
-                Written by: {frontmatter.author} -
+                Written by: <a href='/about/'>{frontmatter.author}</a> -
                 Published: {frontmatter.pubDate.toString().split('T')[0]}
             </span>
             <img class="blog-img" src={frontmatter.image.url} alt={frontmatter.image.alt}>
@@ -33,6 +35,7 @@ const { frontmatter } = Astro.props
                 return <p><a href={'/tags/'+tag} >{tag}</a></p>
             })}
         </div>
+        <slog />
     </div>
 </BaseLayout>
 
