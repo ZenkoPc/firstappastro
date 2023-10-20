@@ -1,0 +1,24 @@
+---
+import Social from './Social.astro'
+
+const platform = 'Github'
+const username = 'ZenkoPc'
+---
+
+<style>
+    footer {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-top: 2rem;
+    }
+</style>
+
+<footer>
+    <p>
+        Learn more and live more on:
+    </p>
+    <Social platform={'Github'} username={'ZenkoPc'} />
+    <Social platform={'Facebook'} username={'ZenkoPc'} />
+    <Social platform={'Youtube'} username={'ZenkoPc'} />
+</footer>

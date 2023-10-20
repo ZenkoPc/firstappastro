@@ -1,4 +1,7 @@
 ---
+import '../styles/global.css'
+import Baselayout from '../layouts/baselayout.astro'
+
 const pageTitle = 'About me'
 const identity = {
     firstName: 'Andres Felipe',
@@ -12,52 +15,40 @@ const skills = ['HTML','CSS','JS','TS','React','Astro']
 const happy = true
 const finished = false
 const goal = 3
+
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{pageTitle}</title>
-	</head>
-	<body>
-		<h1>{pageTitle}</h1>
-        <a href="/">Home</a>
-		<a href="/about/">About</a>
-        <a href="/blog/">Blog</a>
-        <h2>
-            Some facts about me:
-        </h2>
-        <ul>
-            <li>
-                My name is {identity.firstName +" "+ identity.lastName}
+<Baselayout pageTitle={pageTitle}>
+    <h2>
+        Some facts about me:
+    </h2>
+    <ul>
+        <li class="skill">
+            My name is {identity.firstName +" "+ identity.lastName}
+        </li>
+        <li class="skill">
+            I live in {identity.country} and I work as a {identity.occupation}
+        </li>
+        {
+            identity.hobbies.length >= 2 ? 
+            <li class="skill">
+                Some of my Hobbies are:
+                {
+                    identity.hobbies.map((ob) => {
+                        return ob + ", "
+                    })
+                }
             </li>
-            <li>
-                I live in {identity.country} and I work as a {identity.occupation}
+            : 
+            <li class="skill">
+                The truth is I dont have    
             </li>
-            {
-                identity.hobbies.length >= 2 ? 
-                <li>
-                    Some of my Hobbies are:
-                    {
-                        identity.hobbies.map((ob) => {
-                            return ob + ", "
-                        })
-                    }
-                </li>
-                : 
-                <li>
-                    The truht is I dont have    
-                </li>
-            }
-        </ul>
-        <p>
-            My skills are: {skills.map((ob) => <li>{ob}</li>)}
-        </p>
-        {happy && <p>I am happy to be learning astro</p> }
-        {finished && <p>I finished this tutorial</p> }
-        {goal === 3 ? <p>My goal is to finish this in 3 days</p> : <p>I have finished this</p> }
-	</body>
-</html>
+        }
+    </ul>
+    <p>
+        My skills are: {skills.map((ob) => <li>{ob}</li>)}
+    </p>
+    {happy && <p>I am happy to be learning astro</p> }
+    {finished && <p>I finished this tutorial</p> }
+    {goal === 3 ? <p>My goal is to finish this in 3 days</p> : <p>I have finished this</p> }
+</Baselayout>

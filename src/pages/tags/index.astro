@@ -1,0 +1,29 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const pageTitle = 'Tags Index'
+const allPosts = await Astro.glob('../posts/*.md')
+const tags = [...new Set(allPosts.map((ob) => ob.frontmatter.tags).flat())]
+---
+
+<BaseLayout pageTitle={pageTitle}>
+    <div class="links">
+        {tags.map((tag) => {
+            return <p><a href={'/tags/'+tag} >{tag}</a></p>
+        })}
+    </div>
+</BaseLayout>
+
+<style>
+    .links{
+        display: flex;
+        flex-direction: column;
+    }
+    a{
+        color: #00539F;
+        text-decoration: none;
+    }
+    p{
+        line-height: 1;
+    }
+</style>
